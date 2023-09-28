@@ -31,20 +31,20 @@ const App = () => {
  }
 
  const handleNumber=(value, state)=>{
+  /// NOT ADD ZERO MORE THEN ONE
   if(value == 0 && currentVal == ''){
     return
   }
+  /// NOT ADD DECIMAL MORE THEN ONE
   if(value == '.' && currentVal.includes('.')){
     return
   }
-    
   if(currentVal === '0'){
     setcurrentVal(value)
   }else{
     setcurrentVal(`${currentVal}${value}`)
   }  
-   
-   
+
  }
  
  const handleEqual =()=>{
