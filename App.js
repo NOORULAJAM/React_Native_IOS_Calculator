@@ -21,7 +21,8 @@ const App = () => {
         return handleNumber(value, state);
       case "operator": 
         return setoperator(value), setpreVal(currentVal),setcurrentVal("0");
-
+      case "percentage":
+        return handleNumber(value, state);
       case "equal":
         return handleEqual();
       default:
@@ -35,12 +36,9 @@ const App = () => {
   }else{
     setcurrentVal(`${currentVal}${value}`)
   }  
-  console.log("current ", currentVal)
-  console.log("Pre ", preVal)
  }
-
+ 
  const handleEqual =()=>{
-
   switch (operator) {
     case "+":
       return  [setcurrentVal(`${preVal + currentVal}`)];
@@ -50,6 +48,8 @@ const App = () => {
       return  [setcurrentVal(`${preVal*currentVal}`)];
     case "/":
       return  [setcurrentVal(`${preVal / currentVal}`)];
+    case "%":
+      return setcurrentVal(`${parseFloat(preVal) * 100 / parseFloat(currentVal)}`)
     default:
       break;
   }
@@ -73,7 +73,7 @@ const App = () => {
         <View style={{flexDirection:'row'}}>
           <Button text="AC" color={colors.gry} onPress={()=>clear()}/>
           <Button text="+/-" color={colors.gry}/>
-          <Button text="%" color={colors.gry}/>
+          <Button text="%" color={colors.gry} onPress={()=>tapHandler('operator','%')}/>
           <Button text="÷" color={colors.orange} textColor={'#fff'} onPress={()=>tapHandler('operator','/')}/>
         </View>
 
