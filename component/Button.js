@@ -1,13 +1,13 @@
 import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
 import React from 'react';
 
-const Button = ({text, color, textColor, width}) => {
-  console.log(color);
+const Button = ({text, color, textColor, width, onPress}) => {
+
   // set dimmenstion
   const screen = Dimensions.get('window');
   const buttonWidth = screen.width / 4;
   return (
-    <TouchableOpacity
+    <TouchableOpacity onPress={onPress}
       style={{
         justifyContent: 'center',
         alignItems: 'center',
