@@ -31,11 +31,20 @@ const App = () => {
  }
 
  const handleNumber=(value, state)=>{
+  if(value == 0 && currentVal == ''){
+    return
+  }
+  if(value == '.' && currentVal.includes('.')){
+    return
+  }
+    
   if(currentVal === '0'){
     setcurrentVal(value)
   }else{
     setcurrentVal(`${currentVal}${value}`)
   }  
+   
+   
  }
  
  const handleEqual =()=>{
@@ -61,6 +70,16 @@ const App = () => {
   setpreVal('0')
  }
 
+ 
+const deleteFunction = () => {
+  if(currentVal > 0){
+    return setcurrentVal(currentVal.slice(0, -1));
+  }else{
+    return setcurrentVal('0');
+  }
+ 
+};
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
       <StatusBar backgroundColor={'black'} />
@@ -72,7 +91,7 @@ const App = () => {
         {/* FIRST ROW */}
         <View style={{flexDirection:'row'}}>
           <Button text="AC" color={colors.gry} onPress={()=>clear()}/>
-          <Button text="+/-" color={colors.gry}/>
+          <Button text="=>" color={colors.gry} onPress={()=>deleteFunction()}/>
           <Button text="%" color={colors.gry} onPress={()=>tapHandler('operator','%')}/>
           <Button text="÷" color={colors.orange} textColor={'#fff'} onPress={()=>tapHandler('operator','/')}/>
         </View>
